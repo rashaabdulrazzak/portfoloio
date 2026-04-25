@@ -192,36 +192,46 @@ export default function App() {
       <main className="pt-16">
         {/* Hero Section */}
         <section id="about" className="section-padding min-h-[90vh] flex flex-col justify-center max-w-7xl mx-auto relative overflow-hidden">
-          {/* Chemistry Background Element */}
-          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-full h-full -z-10 opacity-[0.08] pointer-events-none">
-            <svg width="100%" height="100%" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" className="text-brand-600">
-              <g fill="none" stroke="currentColor" strokeWidth="1.5">
-                <circle cx="400" cy="400" r="100" />
-                <circle cx="250" cy="300" r="40" />
-                <circle cx="550" cy="300" r="40" />
-                <circle cx="400" cy="550" r="60" />
-                <line x1="400" y1="300" x2="400" y2="200" />
-                <line x1="400" y1="500" x2="400" y2="400" />
-                <line x1="290" y1="300" x2="360" y2="300" />
-                <line x1="440" y1="300" x2="510" y2="300" />
-                <line x1="330" y1="350" x2="270" y2="320" />
-                <path d="M 400 400 L 500 500 M 400 400 L 300 500" />
-                <circle cx="100" cy="100" r="20" />
-                <circle cx="700" cy="700" r="30" />
-                <line x1="100" y1="120" x2="100" y2="200" />
-                <path d="M 600 100 L 700 200 L 600 300" />
-              </g>
-            </svg>
+          {/* Chemistry Background */}
+          <div className="absolute inset-0 -z-20 pointer-events-none">
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[60%] h-[90%] bg-linear-to-br from-brand-200/70 via-brand-100/50 to-transparent rounded-full blur-3xl" />
+            <div className="hidden lg:block absolute right-[4%] top-1/2 -translate-y-1/2 w-[310px] rounded-3xl border border-brand-200/80 bg-white/85 shadow-xl shadow-brand-100/60 p-5">
+              <div className="text-[11px] font-mono uppercase tracking-widest text-brand-600 mb-3">Chemistry Focus</div>
+              <div className="grid grid-cols-3 gap-2 mb-4">
+                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">C</div>
+                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">H</div>
+                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">O</div>
+                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">N</div>
+                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">Pd</div>
+                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">Fe</div>
+              </div>
+              <div className="font-mono text-xs text-brand-700/80">Catalytic hydrogenation:</div>
+              <div className="font-mono text-sm text-brand-800 mt-1">C2H4 + H2 -&gt; C2H6</div>
+            </div>
+            <div className="hidden md:block absolute right-[8%] bottom-[14%] text-brand-700/45 font-mono text-xs tracking-wider">
+              Organometallic Catalysis
+            </div>
           </div>
 
-          {/* Blurred Lab Image Background */}
-          <div className="absolute -right-20 top-1/2 -translate-y-1/2 w-1/2 h-full -z-20 opacity-20 blur-3xl pointer-events-none">
-            <img 
-              src="https://images.unsplash.com/photo-1532187875605-1ef6c237ddc4?auto=format&fit=crop&q=80&w=1000" 
-              alt="Laboratory" 
-              className="w-full h-full object-cover rounded-full"
-              referrerPolicy="no-referrer"
-            />
+          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-full h-full -z-10 opacity-[0.12] pointer-events-none">
+            <svg width="100%" height="100%" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" className="text-brand-700">
+              <g fill="none" stroke="currentColor" strokeWidth="1.5">
+                <circle cx="430" cy="390" r="90" />
+                <circle cx="290" cy="300" r="34" />
+                <circle cx="560" cy="300" r="34" />
+                <circle cx="430" cy="560" r="48" />
+                <line x1="332" y1="330" x2="386" y2="362" />
+                <line x1="526" y1="330" x2="474" y2="362" />
+                <line x1="430" y1="480" x2="430" y2="512" />
+                <line x1="430" y1="300" x2="430" y2="220" />
+                <circle cx="680" cy="170" r="20" />
+                <circle cx="650" cy="220" r="12" />
+                <line x1="668" y1="185" x2="658" y2="208" />
+                <circle cx="150" cy="640" r="26" />
+                <circle cx="205" cy="655" r="14" />
+                <line x1="176" y1="646" x2="191" y2="651" />
+              </g>
+            </svg>
           </div>
 
           <AnimatePresence mode="wait">
