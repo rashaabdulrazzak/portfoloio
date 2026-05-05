@@ -3,12 +3,9 @@ import { motion, useScroll, useSpring, AnimatePresence } from "motion/react";
 import { 
   Mail, 
   Linkedin, 
-  Github, 
-  ExternalLink, 
   ChevronRight, 
   GraduationCap, 
   Beaker, 
-  BookOpen, 
   Briefcase,
   Download,
   ArrowUpRight,
@@ -49,6 +46,7 @@ const SectionHeader = ({ title, subtitle }: { title: string; subtitle?: string }
 export default function App() {
   const [lang, setLang] = useState<Language>("en");
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
+  const [isHeroExpanded, setIsHeroExpanded] = useState<boolean>(false);
   const t = CONTENT[lang];
 
   const { scrollYProgress } = useScroll();
@@ -61,6 +59,7 @@ export default function App() {
   const toggleLang = () => {
     setLang((prev) => (prev === "en" ? "fr" : "en"));
     setIsMobileNavOpen(false);
+    setIsHeroExpanded(false);
   };
 
   return (
@@ -75,15 +74,16 @@ export default function App() {
       <nav className="fixed top-0 w-full z-40 glass border-b border-zinc-100">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between relative">
           <div className="font-sans font-semibold text-lg tracking-tight">
-            Dr. Alex Hazen<span className="text-brand-600">.</span>
+            Dr. Antoine Ishak<span className="text-brand-600">.</span>
           </div>
           
           <div className="flex items-center gap-4 md:gap-8">
             <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-500">
               <a href="#about" className="hover:text-brand-600 transition-colors">{t.nav.about}</a>
               <a href="#research" className="hover:text-brand-600 transition-colors">{t.nav.research}</a>
-              <a href="#publications" className="hover:text-brand-600 transition-colors">{t.nav.publications}</a>
-              <a href="#cv" className="hover:text-brand-600 transition-colors">{t.nav.cv}</a>
+              <a href="#publications" className="hover:text-brand-600 transition-colors">
+                {lang === "fr" ? "Offres de Services" : "Service Packages"}
+              </a>
             </div>
 
             <div className="h-6 w-px bg-zinc-200 hidden md:block" />
@@ -115,7 +115,7 @@ export default function App() {
             </button>
 
             <a 
-              href="mailto:rhazen603@gmail.com" 
+              href="mailto:a.ishak.consulting@gmail.com" 
               className="hidden sm:flex items-center gap-2 px-4 py-2 bg-brand-500 text-white rounded-full hover:bg-brand-900 transition-all text-sm font-medium"
             >
               {t.nav.contact} <ArrowUpRight size={14} />
@@ -151,17 +151,10 @@ export default function App() {
                     onClick={() => setIsMobileNavOpen(false)}
                     className="px-4 py-3 rounded-xl hover:bg-zinc-50 hover:text-brand-600 transition-colors"
                   >
-                    {t.nav.publications}
+                    {lang === "fr" ? "Offres de Services" : "Service Packages"}
                   </a>
                   <a
-                    href="#cv"
-                    onClick={() => setIsMobileNavOpen(false)}
-                    className="px-4 py-3 rounded-xl hover:bg-zinc-50 hover:text-brand-600 transition-colors"
-                  >
-                    {t.nav.cv}
-                  </a>
-                  <a
-                    href="mailto:rhazen603@gmail.com"
+                    href="mailto:a.ishak.consulting@gmail.com"
                     onClick={() => setIsMobileNavOpen(false)}
                     className="sm:hidden mx-2 mt-1 mb-2 flex items-center justify-center gap-2 px-4 py-3 bg-brand-500 text-white rounded-full hover:bg-brand-900 transition-all"
                   >
@@ -192,24 +185,24 @@ export default function App() {
       <main className="pt-16">
         {/* Hero Section */}
         <section id="about" className="section-padding min-h-[90vh] flex flex-col justify-center max-w-7xl mx-auto relative overflow-hidden">
-          {/* Chemistry Background */}
+          {/* Materials Background */}
           <div className="absolute inset-0 -z-20 pointer-events-none">
             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[60%] h-[90%] bg-linear-to-br from-brand-200/70 via-brand-100/50 to-transparent rounded-full blur-3xl" />
             <div className="hidden lg:block absolute right-[4%] top-1/2 -translate-y-1/2 w-[310px] rounded-3xl border border-brand-200/80 bg-white/85 shadow-xl shadow-brand-100/60 p-5">
-              <div className="text-[11px] font-mono uppercase tracking-widest text-brand-600 mb-3">Chemistry Focus</div>
+              <div className="text-[11px] font-mono uppercase tracking-widest text-brand-600 mb-3">Service Focus</div>
               <div className="grid grid-cols-3 gap-2 mb-4">
-                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">C</div>
-                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">H</div>
-                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">O</div>
-                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">N</div>
-                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">Pd</div>
-                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">Fe</div>
+                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">EP</div>
+                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">FR</div>
+                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">VT</div>
+                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">TS</div>
+                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">TP</div>
+                <div className="h-11 rounded-lg border border-brand-200 bg-brand-50 flex items-center justify-center text-brand-700 font-mono text-xs">R&D</div>
               </div>
-              <div className="font-mono text-xs text-brand-700/80">Catalytic hydrogenation:</div>
-              <div className="font-mono text-sm text-brand-800 mt-1">C2H4 + H2 -&gt; C2H6</div>
+              <div className="font-mono text-xs text-brand-700/80">Portfolio:</div>
+              <div className="font-mono text-sm text-brand-800 mt-1">Epoxy + Flame Retardancy + Vitrimer</div>
             </div>
             <div className="hidden md:block absolute right-[8%] bottom-[14%] text-brand-700/45 font-mono text-xs tracking-wider">
-              Organometallic Catalysis
+              Polymer Materials Consulting
             </div>
           </div>
 
@@ -246,9 +239,28 @@ export default function App() {
                 {t.hero.title} <br />
                 <span className="text-zinc-500">{t.hero.subtitle}</span>
               </h1>
-              <p className="text-xl md:text-2xl text-zinc-600 max-w-2xl leading-relaxed mb-12">
-                {t.hero.description}
-              </p>
+              <div className="max-w-3xl mb-12">
+                <p
+                  className={`whitespace-pre-line text-base md:text-lg text-zinc-600 leading-8 transition-all ${
+                    isHeroExpanded ? "" : "max-h-32 overflow-hidden"
+                  }`}
+                >
+                  {t.hero.description}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setIsHeroExpanded((prev) => !prev)}
+                  className="mt-3 text-sm font-medium text-brand-600 hover:text-brand-800 transition-colors"
+                >
+                  {isHeroExpanded
+                    ? lang === "fr"
+                      ? "Voir moins"
+                      : "Show less"
+                    : lang === "fr"
+                      ? "Voir plus"
+                      : "Show more"}
+                </button>
+              </div>
               <div className="flex flex-wrap items-center gap-5">
                 <a 
                   href="#research" 
@@ -257,9 +269,8 @@ export default function App() {
                   {t.hero.cta} <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </a>
                 <div className="flex items-center gap-4 px-2">
-                  <a href="#" className="p-3 text-zinc-400 hover:text-brand-600 transition-colors"><Linkedin size={20} /></a>
-                  <a href="#" className="p-3 text-zinc-400 hover:text-brand-600 transition-colors"><Github size={20} /></a>
-                  <a href="mailto:rhazen603@gmail.com" className="p-3 text-zinc-400 hover:text-brand-600 transition-colors"><Mail size={20} /></a>
+                  <a href="https://www.linkedin.com/in/a-ishak-consulting-6272a33ba/" className="p-3 text-zinc-400 hover:text-brand-600 transition-colors"><Linkedin size={20} /></a>
+                  <a href="mailto:a.ishak.consulting@gmail.com" className="p-3 text-zinc-400 hover:text-brand-600 transition-colors"><Mail size={20} /></a>
                 </div>
               </div>
             </motion.div>
@@ -269,7 +280,7 @@ export default function App() {
         {/* Research Section */}
         <section id="research" className="section-padding bg-zinc-50">
           <div className="max-w-7xl mx-auto">
-            <SectionHeader title={t.research.title} subtitle={t.research.subtitle} />
+            <SectionHeader title={t.research.title}  />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {t.research.projects.map((project, index) => (
                 <motion.div
@@ -302,60 +313,71 @@ export default function App() {
         </section>
 
         {/* Publications Section */}
-        <section id="publications" className="section-padding">
+       <section id="publications" className="section-padding">
           <div className="max-w-7xl mx-auto">
-            <SectionHeader title={t.publications.title} subtitle={t.publications.subtitle} />
+            <SectionHeader title="Service Packages" />
             <div className="space-y-6">
-              {t.publications.items.map((pub, index) => (
+              {[
+                {
+                  title: "Starter Package - Technical Consultation",
+                  points: [
+                    "Initial discussion of your project or challenge",
+                    "Review of materials and formulation strategy",
+                    "Expert recommendations and next steps"
+                  ]
+                },
+                {
+                  title: "Advanced Package - Formulation & Development Support",
+                  points: [
+                    "In-depth analysis of your system (epoxy, flame-retardant, or vitrimer)",
+                    "Tailored formulation strategies",
+                    "Guidance on material selection and performance optimization",
+                    "Ongoing technical support"
+                  ]
+                },
+                {
+                  title: "Expert Package - Full R&D Partnership",
+                  points: [
+                    "Complete support from concept to application",
+                    "Development of new formulations or technologies",
+                    "Fire performance and recyclability strategy (flame retardancy & vitrimer systems)",
+                    "Process optimization and scale-up guidance"
+                  ]
+                }
+              ].map((pkg, index) => (
                 <motion.div
                   key={`${lang}-${index}`}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="group flex flex-col md:flex-row md:items-center justify-between p-6 border-b border-zinc-100 hover:bg-zinc-50 transition-colors rounded-xl"
+                  className="p-6 border border-zinc-200 rounded-2xl bg-white"
                 >
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <BookOpen size={16} className="text-brand-600" />
-                      <span className="text-xs font-mono text-zinc-400">{pub.date}</span>
-                    </div>
-                    <h3 className="text-lg font-medium text-zinc-900 mb-1 group-hover:text-brand-600 transition-colors">
-                      {pub.title}
-                    </h3>
-                    <div className="mb-2">
-                      <span className="inline-flex items-center rounded-full bg-brand-50 text-brand-700 px-2.5 py-1 text-[11px] font-medium">
-                        {pub.journal}
-                      </span>
-                    </div>
-                    <p className="text-xs text-zinc-500">{pub.authors}</p>
-                  </div>
-                  <div className="mt-4 md:mt-0 md:ml-8">
-                    <a 
-                      href={`https://doi.org/${pub.doi}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm font-medium text-zinc-900 hover:text-brand-600 transition-colors"
-                    >
-                      DOI: {pub.doi} <ExternalLink size={14} />
-                    </a>
-                  </div>
+                  <h3 className="text-lg font-medium text-zinc-900 mb-3">{pkg.title}</h3>
+                  <ul className="space-y-2 text-sm text-zinc-600">
+                    {pkg.points.map((point) => (
+                      <li key={point} className="flex items-start gap-2">
+                        <span className="text-brand-600">-</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </motion.div>
               ))}
             </div>
             <div className="mt-10">
               <a
-                href="mailto:rhazen603@gmail.com"
+                href="mailto:a.ishak.consulting@gmail.com"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-200 text-sm font-medium text-zinc-700 hover:text-brand-600 hover:border-brand-200 hover:bg-brand-50 transition-colors"
               >
                 {lang === "en" ? "Discuss a collaboration" : "Discuter une collaboration"} <ArrowUpRight size={14} />
               </a>
             </div>
           </div>
-        </section>
+        </section> 
 
         {/* CV Section */}
-        <section id="cv" className="section-padding bg-brand-500 text-white overflow-hidden">
+       {/*  <section id="cv" className="section-padding bg-brand-500 text-white overflow-hidden">
           <div className="max-w-7xl mx-auto relative">
             <div className="absolute top-0 right-0 w-96 h-96 bg-brand-600/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
             
@@ -382,7 +404,7 @@ export default function App() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              {/* Experience */}
+         
               <div>
                 <div className="flex items-center gap-3 mb-8 text-zinc-300">
                   <Briefcase size={20} />
@@ -403,7 +425,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Education */}
+             
               <div>
                 <div className="flex items-center gap-3 mb-8 text-zinc-300">
                   <GraduationCap size={20} />
@@ -425,7 +447,7 @@ export default function App() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Footer */}
         <footer className="py-12 px-6 border-t border-zinc-100">
@@ -434,9 +456,8 @@ export default function App() {
               {t.footer.copy}
             </div>
             <div className="flex items-center gap-6">
-              <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors"><Linkedin size={18} /></a>
-              <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors"><Github size={18} /></a>
-              <a href="mailto:rhazen603@gmail.com" className="text-zinc-400 hover:text-zinc-900 transition-colors"><Mail size={18} /></a>
+              <a href="https://www.linkedin.com/in/a-ishak-consulting-6272a33ba/" className="text-zinc-400 hover:text-zinc-900 transition-colors"><Linkedin size={18} /></a>
+              <a href="mailto:a.ishak.consulting@gmail.com" className="text-zinc-400 hover:text-zinc-900 transition-colors"><Mail size={18} /></a>
             </div>
           </div>
         </footer>
