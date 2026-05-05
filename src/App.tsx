@@ -48,6 +48,69 @@ export default function App() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
   const [isHeroExpanded, setIsHeroExpanded] = useState<boolean>(false);
   const t = CONTENT[lang];
+  const servicePackages = lang === "fr"
+    ? [
+        {
+          tier: "Starter",
+          title: "Pack Starter - Consultation Technique",
+          points: [
+            "Discussion initiale de votre projet ou de votre challenge",
+            "Revue des materiaux et de la strategie de formulation",
+            "Recommandations expertes et prochaines etapes"
+          ]
+        },
+        {
+          tier: "Avance",
+          title: "Pack Avance - Support Formulation & Developpement",
+          points: [
+            "Analyse approfondie de votre systeme (epoxy, retardateur de flamme ou vitrimer)",
+            "Strategies de formulation adaptees",
+            "Conseils sur la selection des materiaux et l'optimisation des performances",
+            "Support technique continu"
+          ]
+        },
+        {
+          tier: "Expert",
+          title: "Pack Expert - Partenariat R&D Complet",
+          points: [
+            "Accompagnement complet du concept a l'application",
+            "Developpement de nouvelles formulations ou technologies",
+            "Strategie de performance au feu et de recyclabilite (retardance flamme & systemes vitrimers)",
+            "Optimisation des procedes et accompagnement a la montee en echelle"
+          ]
+        }
+      ]
+    : [
+        {
+          tier: "Starter",
+          title: "Starter Package - Technical Consultation",
+          points: [
+            "Initial discussion of your project or challenge",
+            "Review of materials and formulation strategy",
+            "Expert recommendations and next steps"
+          ]
+        },
+        {
+          tier: "Advanced",
+          title: "Advanced Package - Formulation & Development Support",
+          points: [
+            "In-depth analysis of your system (epoxy, flame-retardant, or vitrimer)",
+            "Tailored formulation strategies",
+            "Guidance on material selection and performance optimization",
+            "Ongoing technical support"
+          ]
+        },
+        {
+          tier: "Expert",
+          title: "Expert Package - Full R&D Partnership",
+          points: [
+            "Complete support from concept to application",
+            "Development of new formulations or technologies",
+            "Fire performance and recyclability strategy (flame retardancy & vitrimer systems)",
+            "Process optimization and scale-up guidance"
+          ]
+        }
+      ];
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -81,7 +144,7 @@ export default function App() {
             <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-500">
               <a href="#about" className="hover:text-brand-600 transition-colors">{t.nav.about}</a>
               <a href="#research" className="hover:text-brand-600 transition-colors">{t.nav.research}</a>
-              <a href="#publications" className="hover:text-brand-600 transition-colors">
+              <a href="#packages" className="hover:text-brand-600 transition-colors">
                 {lang === "fr" ? "Offres de Services" : "Service Packages"}
               </a>
             </div>
@@ -147,7 +210,7 @@ export default function App() {
                     {t.nav.research}
                   </a>
                   <a
-                    href="#publications"
+                    href="#packages"
                     onClick={() => setIsMobileNavOpen(false)}
                     className="px-4 py-3 rounded-xl hover:bg-zinc-50 hover:text-brand-600 transition-colors"
                   >
@@ -313,51 +376,43 @@ export default function App() {
         </section>
 
         {/* Publications Section */}
-       <section id="publications" className="section-padding">
+       <section id="packages" className="section-padding">
           <div className="max-w-7xl mx-auto">
-            <SectionHeader title="Service Packages" />
-            <div className="space-y-6">
-              {[
-                {
-                  title: "Starter Package - Technical Consultation",
-                  points: [
-                    "Initial discussion of your project or challenge",
-                    "Review of materials and formulation strategy",
-                    "Expert recommendations and next steps"
-                  ]
-                },
-                {
-                  title: "Advanced Package - Formulation & Development Support",
-                  points: [
-                    "In-depth analysis of your system (epoxy, flame-retardant, or vitrimer)",
-                    "Tailored formulation strategies",
-                    "Guidance on material selection and performance optimization",
-                    "Ongoing technical support"
-                  ]
-                },
-                {
-                  title: "Expert Package - Full R&D Partnership",
-                  points: [
-                    "Complete support from concept to application",
-                    "Development of new formulations or technologies",
-                    "Fire performance and recyclability strategy (flame retardancy & vitrimer systems)",
-                    "Process optimization and scale-up guidance"
-                  ]
-                }
-              ].map((pkg, index) => (
+            <SectionHeader
+              title={lang === "fr" ? "Offres de Services" : "Service Packages"}
+              subtitle={lang === "fr" ? "Choisissez le niveau d'accompagnement adapte a votre projet" : "Choose the level of support that matches your project"}
+            />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {servicePackages.map((pkg, index) => (
                 <motion.div
                   key={`${lang}-${index}`}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  tabIndex={0}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-6 border border-zinc-200 rounded-2xl bg-white"
+                  className={`group p-6 rounded-3xl border transition-all duration-300 ease-out hover:-translate-y-1 hover:border-brand-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:ring-offset-2 ${
+                    index === 1
+                      ? "bg-brand-50 border-brand-200 shadow-lg shadow-brand-100/40 hover:shadow-xl hover:shadow-brand-200/50"
+                      : "bg-white border-zinc-200 hover:shadow-xl hover:shadow-zinc-200/50"
+                  }`}
                 >
-                  <h3 className="text-lg font-medium text-zinc-900 mb-3">{pkg.title}</h3>
-                  <ul className="space-y-2 text-sm text-zinc-600">
+                  <div className="mb-3">
+                    <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-medium ${
+                      index === 1
+                        ? "bg-brand-500 text-white"
+                        : index === 2
+                          ? "bg-orange-50 text-orange-700 border border-orange-200"
+                          : "bg-zinc-100 text-zinc-600"
+                    }`}>
+                      {pkg.tier}
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-medium text-zinc-900 mb-4 leading-snug">{pkg.title}</h3>
+                  <ul className="space-y-2 text-sm text-zinc-600 mb-6">
                     {pkg.points.map((point) => (
                       <li key={point} className="flex items-start gap-2">
-                        <span className="text-brand-600">-</span>
+                        <span className="text-brand-600 mt-0.5">•</span>
                         <span>{point}</span>
                       </li>
                     ))}
@@ -365,10 +420,10 @@ export default function App() {
                 </motion.div>
               ))}
             </div>
-            <div className="mt-10">
+            <div className="mt-12">
               <a
                 href="mailto:a.ishak.consulting@gmail.com"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-200 text-sm font-medium text-zinc-700 hover:text-brand-600 hover:border-brand-200 hover:bg-brand-50 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand-500 text-white text-sm font-medium hover:bg-brand-900 transition-colors shadow-md shadow-brand-200/50"
               >
                 {lang === "en" ? "Discuss a collaboration" : "Discuter une collaboration"} <ArrowUpRight size={14} />
               </a>
