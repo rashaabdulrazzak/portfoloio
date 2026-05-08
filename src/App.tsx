@@ -76,7 +76,8 @@ export default function App() {
             "Accompagnement complet du concept a l'application",
             "Developpement de nouvelles formulations ou technologies",
             "Strategie de performance au feu et de recyclabilite (retardance flamme & systemes vitrimers)",
-            "Optimisation des procedes et accompagnement a la montee en echelle"
+            "Optimisation des procedes et accompagnement a la montee en echelle",
+            "Collaboration a long terme et soutien a l'innovation"
           ]
         }
       ]
@@ -107,7 +108,8 @@ export default function App() {
             "Complete support from concept to application",
             "Development of new formulations or technologies",
             "Fire performance and recyclability strategy (flame retardancy & vitrimer systems)",
-            "Process optimization and scale-up guidance"
+            "Process optimization and scale-up guidance",
+            "Long-term collaboration and innovation support"
           ]
         }
       ];
