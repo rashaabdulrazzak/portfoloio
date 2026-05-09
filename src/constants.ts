@@ -9,7 +9,7 @@ export const CONTENT = {
       },
       hero: {
         title: "PhD in Chemistry &",
-        subtitle: "Materials Physical Chemistry.",
+        subtitle: "Physical Chemistry of Materials.",
         description: `I am a consultant specializing in epoxy resins and functional polymer systems,
 with a focus on flame-retardant materials and vitrimeric polymers.
 My work centers on the design, formulation, and optimization of
@@ -22,7 +22,7 @@ bridge the gap between research and industrial application-from material
 selection and formulation to process optimization and performance evaluation.
 I am particularly interested in innovative solutions that combine durability,
 safety, and circularity in polymer materials.
-Open to collaborations in R&D, product development,`,
+Open to collaborations in R&D, product development, and technical consulting.`,
         cta: "View Services"
       },
       research: {
@@ -154,8 +154,8 @@ Open to collaborations in R&D, product development,`,
         contact: "Contact"
       },
       hero: {
-        title: "Docteur en Chimie &",
-        subtitle: "Physico-Chimie des Matériaux.",
+        title: "Doctorat en chimie &",
+        subtitle: "Physico-chimie des matériaux.",
         description: `Je suis consultant spécialisé dans les résines époxy et les systèmes polymères fonctionnels,
 avec un focus sur les matériaux retardateurs de flamme et les polymères vitrimeriques.
 Mon travail porte sur la conception, la formulation et l'optimisation de
