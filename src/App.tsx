@@ -24,21 +24,23 @@ const SectionHeader = ({ title, subtitle }: { title: string; subtitle?: string }
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="flex items-center gap-2 text-brand-600 font-mono text-sm tracking-widest uppercase mb-2"
+      className="flex items-center gap-3 mb-3"
     >
-      <span className="h-px w-8 bg-brand-600"></span>
-      {title}
+      <span className="h-px w-8 bg-black shrink-0" aria-hidden />
+      <h2 className="text-3xl md:text-4xl font-sans font-bold tracking-tight text-black m-0">
+        {title}
+      </h2>
     </motion.div>
     {subtitle && (
-      <motion.h2
+      <motion.p
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className="text-3xl md:text-4xl font-sans font-medium tracking-tight text-zinc-900"
+        className="text-lg md:text-xl font-sans font-normal tracking-tight text-zinc-600 max-w-3xl pl-11 m-0"
       >
         {subtitle}
-      </motion.h2>
+      </motion.p>
     )}
   </div>
 );
@@ -345,7 +347,7 @@ export default function App() {
         {/* Research Section */}
         <section id="research" className="section-padding bg-zinc-50">
           <div className="max-w-7xl mx-auto">
-            <SectionHeader title={t.research.title}  />
+            <SectionHeader title={t.research.title} subtitle={t.research.subtitle} />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {t.research.projects.map((project, index) => (
                 <motion.div
